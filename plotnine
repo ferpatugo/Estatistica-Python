@@ -1,0 +1,68 @@
+! pip install plotnine 
+! pip install patchworklib
+
+import pandas as pd 
+import numpy as np
+import patchworklib as pw
+from mizani.formatters import percent_format
+from plotnine.data import mtcars
+
+from plotnine import * #importa tudo do ggplot2
+import plotnine as gg
+
+sexo=["M","F"]
+cor=["Preto","Castanho","Azul","Verde"]
+cigarro=["Fumante","Não Fumante"]
+doente=["Doente","Sadio"]
+estado_civil=["Solteiro(a)","Casado(a)"]
+
+a_sexo = np.random.choice(sexo,size=100, replace=True)
+a_cor_olhos= np.random.choice(cor,size=100, replace=True)
+a_fumante= np.random.choice(cigarro,size=100, replace=True)
+a_doente= np.random.choice(doente,size=100, replace=True)
+a_estado_civil= np.random.choice(estado_civil,size=100, replace=True)
+a_dummy_estado_civil=np.where(a_estado_civil=="Solteiro(a)","1","0")
+
+arr1 = np.array([[a_sexo,
+           a_cor_olhos,
+           a_fumante,
+           a_doente,
+           a_estado_civil,
+           a_dummy_estado_civil]], dtype=object
+        )
+
+df = pd.DataFrame(arr1[0])
+
+df_pronto = df.transpose()
+
+df_pronto.columns = ['sexo','cor_olhos','fumante','doente','estado_civil','dummy_estado_civil']
+
+
+
+p = (n9.ggplot(df_pronto,aes("cor_olhos")) + 
+                n9.geom_bar(position = "dodge",fill="red") +
+                n9.ggtitle("Número de alunos por cor dos olhos")+
+                n9.xlab("Cor dos olhos") +
+                n9.ylab("Frequência simples (Quantidade de alunos)") )
+p
+
+gg.theme_set(gg.theme_bw())
+
+p = (gg.ggplot(df)
+     + gg.aes(x='sepal_length', y='petal_length', color='target')
+     + gg.geom_point(size=2)
+     + gg.ggtitle('Iris dataset is not linearly separable')
+    )
+p
+
+gg.theme_set(gg.theme_bw())
+
+p = (ggplot(mtcars, aes('wt', 'mpg', color='factor(gear)'))
+ + geom_point()
+ + stat_smooth(method='lm')
+ + facet_wrap('~gear'))
+
+p
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
