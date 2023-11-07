@@ -1,0 +1,52 @@
+
+# Aula prática 03 - Python - Distribuições de Probabilidade Discretas - Bernoulli e Binomial
+
+
+
+# Imports de bibliotecas
+from scipy.stats import binom
+
+# Exemplo Bernoulli
+
+### Imaginemos que X="O aluno acertar uma questão na prova", sendo que a prova só tem uma questão, contendo certo ou errado, portanto podemos entender que o aluno tem uma resposta favorável em duas possíveis, 50% de chance de acertar a questão.
+
+
+
+?binom.pmf
+
+# Calculando pela função de densidade de probabilidade aplicando para X=1: P(X=1)
+print(binom.pmf(1, 1, 0.5)) 
+# Calculando pela funçao de distribuição acumulada, fazendo o equivalente a P(X<=1)-P(X<=0)= P(X=1), que é o que queremos calcular.
+print(binom.cdf(1, 1, 0.5)-binom.cdf(0, 1, 0.5))
+
+# Exemplo Binomial
+
+### Imaginemos que X="O aluno acertar uma questão na prova", sendo que a prova só tem duas questões, contendo certo ou errado, portanto podemos entender que o aluno tem uma resposta favorável em  duas possíveis, 50% de chance de acertar a questão.
+
+
+# Calculando pela função de densidade de probabilidade aplicando para X=1: P(X=1)
+print(binom.pmf(1, 2, 0.5)) 
+# Calculando pela funçao de distribuição acumulada, fazendo o equivalente a P(X<=1)-P(X<=0)= P(X=1), que é o que queremos calcular.
+print(binom.cdf(1, 2, 0.5)-binom.cdf(0, 2, 0.5))
+
+# Exemplo2 Binomial
+
+### Considere um exame de múltipla escolha com 20 questões, 5 alternativas pra cada pergunta. Caso o aluno não estude e "chute" todas as respostas, qual a probabilidade de acertar 30% da prova? E qual seu número esperado de acertos? 
+
+
+import math
+
+math.exp(1)
+
+n = 20
+p = 0.2
+
+# Utilizando a função densidade de probabilidade aplicando para X=6: P(X=6)
+print(binom.pmf(6,n,p))
+
+ # Utilizando a função de distribuição acumulada P(X<=6)-P(X<=5)= P(X=6)
+print(binom.cdf(6,n,p)-binom.cdf(5,n,p))
+
+# Calculando o valor esperado
+valor_esperado = n*p
+print(valor_esperado)
