@@ -1,0 +1,60 @@
+# Aula prática 02 - Teorema da probabilidade total e teorema de bayes
+
+# Exemplo teorema da probabilidade total
+
+### Em um clube de natação, existe um grupo de crianças em que apenas 10% sabe nadar. Dentre as crianças que sabem nadar, 50% estudam à tarde, enquanto, dentre aquelas que não sabem nadar, 15% estudam à tarde. Em relação ao grupo todo, qual é o percentual de crianças que estudam à tarde?
+
+# Criando o objeto P(A)
+PA = 0.10
+# Criando o objeto P(AC), Evento complementar ao A
+PAC = 0.9
+# Criando o objeto PBdadoA
+PBdadoA = 0.5
+# Calculando o objeto PBCdadoA
+PBCdadoA = 0.5
+# Calculando o objeto PBdadoAC
+PBdadoAC = 0.15
+# Calculando o objeto PBCdadoAC
+PBCdadoAC = 0.85
+#Queremos saber PB
+PB = PA * PBdadoA + PAC * PBdadoAC
+print(PB)
+
+# Exemplo teorema de Bayes
+
+### Em certa empresa, 40% dos homens e 20% das mulheres falam inglês fluentemente. 80% das pessoas são homens. A probabilidade de um aluno fluente na língua inglesa, selecionado ao   acaso, ser homem ?:
+
+
+# Primeira maneira
+
+PA=0.8
+PAC=0.2
+#----
+PBdadoA=0.4
+PBCdadoA=0.6
+#----
+PBdadoAC=0.2
+PBCdadoAC=0.8
+
+#Queremos saber PAdadoB
+
+#Denominador(Lei da probabilidade total)
+PB=PA*PBdadoA+PAC*PBdadoAC
+PB
+#Numerador( Uma parte do denominador)
+PAinterB=PA*PBdadoA
+PAinterB
+bayes=PAinterB/PB
+bayes
+
+# Segunda Maneira
+
+# Calculando PAinterB
+PAinterB = 0.8 * 0.4
+# Calculando PAinterB
+PACinterB = 0.2 * 0.2
+# Calculando PB
+PB= PAinterB + PACinterB
+# Utilizando a fórmula de Bayes
+bayes = PAinterB/PB
+print(bayes)
