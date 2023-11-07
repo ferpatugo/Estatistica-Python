@@ -1,0 +1,136 @@
+# Import de bibliotecas
+
+
+
+from scipy.stats import norm
+from scipy.stats import t
+import math
+
+# Exemplo 1) Testes de Hipótese Bilateral
+
+## Numa linha de produção uma máquina deve estar regulada para preencher embalagens com peso médio igual a 1000 g. Históricamente, sabe-se que a distribuição dos pesos desta máquina é normal e a variância é 16 g2. Cientistas, ao implementar um controle de qualidade recolheram na última hora uma amostra de tamanho 10 e observaram que a máquina está produzindo embalagens com peso médio igual 1004 g. Existe evidência para dizer que a máquina está desregulada, ao nível de confiança de 95%?
+
+# Dados do enunciado:
+
+#Tamanho da amostra
+n=10
+
+#Media
+Xbarra=1004
+
+#nível de significância
+alfa=0.05
+
+#Desvio populacional conhecido
+sigma=4
+
+#Sob h0
+mi=1000
+
+# Hipóteses do teste
+
+- 𝐻0: 𝜇 = 1000
+
+- 𝐻1: 𝜇 != 1000
+
+# Zcalculado
+
+zcalc = (Xbarra - mi)/(sigma/math.sqrt(n))
+zcalc
+
+# Z critico Bilateral
+
+zcrit = norm.ppf(1-alfa/2)
+zcrit
+
+# P-valor
+
+Pvalor=2*(1-norm.cdf(zcalc))
+Pvalor
+
+# Exemplo 2) Testes de Hipótese Unilateral à Direita (com desvio desconhecido e n<30)
+
+## Frequentemente, pesquisas amostrais são realizadas em um grande portal de notícias com o intuito de se manter e ou avançar no mercado. Uma das mais recentes foi realizada com 16 usuários e observou-se que os mesmos gastam, em média, 55 minutos consumindo notícias e anúncios em geral deste portal. Observou-se, ainda, que a variabilidade dos dados da pesquisa, dada pela variância, foi igual a 144 min.2.Se um anunciante tem por critério de decisão efetivar um contrato com este portal somente se o tempo médio de consumo for superior a 50 minutos ao nível de 5% de significância, ele deve efetivar o contrato?
+
+# Dados do enunciado:
+
+#Tamanho da amostra
+n=16
+
+#Media
+Xbarra=55
+
+#nível de significância
+alfa=0.05  
+
+#Desvio populacional Desconhecido
+s=12
+
+#Média populacional sob h0
+mi=50
+
+
+
+# Hipóteses do teste
+
+- 𝐻0: 𝜇<50
+
+- 𝐻1: 𝜇>50
+
+# Tcalculado
+
+tcalc = (Xbarra - mi)/(s/math.sqrt(n))
+tcalc
+
+# T critico unilateral
+
+tcrit = t.ppf(1-alfa,16-1)
+tcrit
+
+# P-valor
+
+Pvalor=1-t.cdf(tcalc,15)
+Pvalor
+
+# Exemplo 3) Teste de Hipóteses para proporção
+
+## Em uma cidade do interior nordestino, historicamente 75% dos acidentes envolvem motociclistas. Visando diminuir este percentual, os órgão competentes investiram em ações educacionais e de fiscalização intensa de modo que, após seis meses de intervenção, verificou-se 231 acidentes envolvendo motociclistas dentre um total de 324 acidentes. Nestas condições e baseado em um adequado teste de hipóteses, você conclui que existe evidência estatística para dizer que a intervenção dos órgãos competentes surtiu efeito positivo ao nível de significância 5%?
+
+# Dados do enunciado
+
+#Tamanho da amostra
+n=324
+
+#proporção amostral
+pchapeu=231/324
+
+#fracassos
+qchapeu=93/324
+
+#nível de significância
+alfa=0.05  
+
+#Proporção sob h0
+p=0.75
+
+# Hipóteses do teste
+
+- 𝐻0: p > 0,75
+
+- 𝐻1: p < 0,75
+
+# Zcalculado
+
+
+zcalc = (pchapeu - p)/math.sqrt(pchapeu*qchapeu/n)
+zcalc
+
+Z critico unilateral
+
+zcrit = (-1)*norm.ppf(1-alfa)
+zcrit
+
+# P-valor
+
+Pvalor=norm.cdf(zcalc)
+Pvalor
